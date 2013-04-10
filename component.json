@@ -1,6 +1,6 @@
 {
   "name": "SoundManager2",
-  "repo": "stereosteve/SoundManager2",
+  "repo": "indabaui/SoundManager2",
   "description": "SoundManager2",
   "version": "0.0.1",
   "keywords": [],
@@ -9,6 +9,7 @@
   "license": "MIT",
   "main": "script/soundmanager2.js",
   "scripts": [
+    "index.js",
     "script/soundmanager2.js"
   ],
   "files": [
