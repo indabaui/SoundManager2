@@ -7,7 +7,6 @@
   "dependencies": {},
   "development": {},
   "license": "MIT",
-  "main": "script/soundmanager2.js",
   "scripts": [
     "index.js",
     "script/soundmanager2.js"
