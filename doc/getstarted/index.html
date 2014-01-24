@@ -3,6 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>SoundManager 2 Tutorial: Getting Started</title>
+<meta name="robots" content="noindex" />
 <meta name="description" content="SoundManager 2 tutorial, example code, how to get started guide including and configuring SoundManager 2 for playing MP3 audio via Javascript." />
 <meta name="keywords" content="soundmanager2 tutorial, javascript sound, javascript audio, javascript play mp3, javascript sound control, mp3, mp4, mpeg4" />
 <meta name="robots" content="all" />
@@ -22,8 +23,7 @@ soundManager.setup({
   bgColor: '#f6f6f6',
   debugMode: true,
   // enable flash debug output for this page
-  debugFlash: true,
-  preferFlash: true
+  debugFlash: true
 });
 </script>
 <script type="text/javascript" src="../../troubleshoot/debug.js"></script>
@@ -76,7 +76,7 @@ soundManager.setup({
 		<li><a href="../#smdefaults">Global Sound Defaults</a></li>
 		<li><a href="../#api">SoundManager Core API</a></li>
 		<li><a href="../#smsoundmethods">Sound Object (SMSound) API</a></li>
-		<li><a href="../generated/script/soundmanager2.html">Generated Documentation</a></li>
+		<li><a href="../generated/soundmanager2.html">Generated Documentation</a></li>
 	   </ul>
 	  </li>
 	
@@ -92,7 +92,8 @@ soundManager.setup({
 	   <a href="../technotes/">Technical Notes</a>
 	   <ul>
 		<li><a href="../technotes/#requirements">System Requirements</a></li>
-		<li><a href="../technotes/#serving-audio">Serving To Clients</a></li>
+		<li><a href="../technotes/#serving-audio">Serving To HTML5 + Flash Clients</a></li>
+		<li><a href="../technotes/#client-requests">How Clients Download Audio</a></li>
 		<li><a href="../technotes/#mobile-device-limitations">Mobile Device Limitations</a></li>
 		<li><a href="../technotes/#debug-output">Debug + Console Output</a></li>
 	   </ul>
@@ -163,8 +164,8 @@ soundManager.setup({
 				  <pre>&lt;script src="<span>soundmanager2.js</span>"&gt;&lt;/script&gt;</pre>
 				 </td>
 				 <td>Development, testing, debugging</td>
-				 <td class="nw">146 KB</td>
-				 <td class="nw">39 KB</td>
+				 <td class="nw">153 KB</td>
+				 <td class="nw">41 KB</td>
 			   </tr>
 
 			   <tr>
@@ -173,7 +174,7 @@ soundManager.setup({
 				  <pre>&lt;script src="<span>soundmanager2-nodebug.js</span>"&gt;&lt;/script&gt;</pre>
 				 </td>
 				 <td>Production, "clean" no-debug code</td>
-				 <td class="nw">75 KB</td>
+				 <td class="nw">78 KB</td>
 				 <td class="nw">17 KB</td>
 			   </tr>
 
@@ -193,7 +194,7 @@ soundManager.setup({
 				  <pre>&lt;script src="<span>soundmanager2-nodebug-jsmin.js</span>"&gt;&lt;/script&gt;</pre>
 				 </td>
 				 <td>Production-optimized, debug code removed</td>
-				 <td class="nw">33 KB</td>
+				 <td class="nw">34 KB</td>
 				 <td class="nw booyaa" title="Best-case scenario for load time/performance">11 KB!</td>
 			   </tr>
 
@@ -204,8 +205,8 @@ soundManager.setup({
 <pre class="block"><code>&lt;script&gt;
 soundManager.setup({
   url: '<span>/path/to/swf-files/</span>',
-  flashVersion: 9, <span><span>// optional: shiny features (default = 8)</span></span>
-  <span><span>// optional: ignore Flash where possible, use 100% HTML5 mode
+  flashVersion: 9, <span><span>// optional: shiny features (default = 8)
+  // optional: ignore Flash where possible, use 100% HTML5 mode
   // <a href="../#soundmanager-preferflash" title="soundManager.preferFlash documentation">preferFlash</a>: false,</span></span>
   onready: function() {
     <span><span>// Ready to use; <a href="../#soundmanager-createsound">soundManager.createSound()</a> etc. can now be called.</span></span>
@@ -400,7 +401,7 @@ soundManager.setup({
 			<div id="troubleshooting-flash9-highperformance" class="c2">
 
 				<h3>SoundManager 2 Start-up and Debug Tools</h3>
-				<p>This troubleshooting tool can come in handy for debugging SM2 start-up problems.</p>
+				<p>This troubleshooting tool can come in handy for debugging SM2 start-up problems, when Flash support is required.</p>
 
 				<p class="note">Flash options: <a href="#troubleshooting-flash8" onclick="window.location.replace(this.href);window.location.reload()">Flash 8</a> (default), <a href="#troubleshooting-flash9" onclick="window.location.replace(this.href);window.location.reload()">Flash 9</a> (normal) or <a href="#troubleshooting-flash9-highperformance" onclick="window.location.replace(this.href);window.location.reload()">Flash 9 + highPerformance + fastPolling</a> modes.</p>
 

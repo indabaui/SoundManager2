@@ -3,6 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>SoundManager 2: JavaScript Sound For The Web</title>
+<meta name="robots" content="noindex" />
 <meta name="description" content="Play sound from JavaScript including MP3, MPEG-4 and HTML5-supported audio formats with SoundManager 2, a cross-browser/platform sound API. BSD licensed."/>
 <meta name="keywords" content="javascript sound, html5 audio, html5 sound, javascript audio, javascript play mp3, javascript sound control, mp3, mp4, mpeg4, aac, Scott Schiller, Schill, Schillmania"/>
 <meta name="author" content="Scott Schiller"/>
@@ -81,7 +82,7 @@
 						<li><a href="doc/#smdefaults">Global Sound Defaults</a></li>
 						<li><a href="doc/#api">SoundManager Core API</a></li>
 						<li><a href="doc/#smsoundmethods">Sound Object (SMSound) API</a></li>
-						<li><a href="doc/generated/script/soundmanager2.html">Generated Documentation</a></li>
+						<li><a href="doc/generated/soundmanager2.html">Generated Documentation</a></li>
 					</ul>
 				</li>
 				<li>
@@ -95,7 +96,8 @@
 					<a href="doc/technotes/">Technical Notes</a>
 					<ul>
 						<li><a href="doc/technotes/#requirements">System Requirements</a></li>
-						<li><a href="doc/technotes/#serving-audio">Serving To Clients</a></li>
+						<li><a href="doc/technotes/#serving-audio">Serving To HTML5 + Flash Clients</a></li>
+						<li><a href="doc/technotes/#client-requests">How Clients Download Audio</a></li>
 						<li><a href="doc/technotes/#mobile-device-limitations">Mobile Device Limitations</a></li>
 						<li><a href="doc/technotes/#debug-output">Debug + Console Output</a></li>
 					</ul>
@@ -175,6 +177,7 @@
 				<div class="threeup first">
 
 					<div class="column">
+
 						<div class="column-wrapper">
 
 							<h3>Speak and <b style="white-space:nowrap">be heard<span class="music-note icon"></span></b></h3>
@@ -225,7 +228,11 @@
 
 							</div>
 
+							<div id="html5-audio-notes">
+							</div>
+
 						</div>
+
 					</div>
 
 
@@ -277,7 +284,7 @@
 
 							<p>These demos use unordered lists with MP3 links that play in-place; the UI is easily customized via CSS.</p>
 
-							<ul class="graphic">
+							<ul id="graphic-playlist" class="graphic">
 								<li><a href="demo/_mp3/rain.mp3" class="exclude">Rain</a></li>
 								<li><a href="demo/_mp3/walking.mp3" class="exclude">Walking</a></li>
 								<!-- files from the web (note that ID3 information will *not* load from remote domains without permission, Flash restriction) -->
@@ -378,14 +385,12 @@
 
 <pre class="block"><code>&lt;script src="soundmanager2.js"&gt;&lt;/script&gt;
 &lt;script&gt;
-soundManager.setup({
+<a href="doc/#soundmanager-setup" title="soundManager.setup() documentation" onclick="checkDomain()">soundManager.setup</a>({
   <span><span>// where to find flash audio SWFs, as needed</span></span>
   url: '<span>/path/to/swf-files/</span>',
-  <span><span>// optional: prefer HTML5 over Flash for MP3/MP4
-  // <a href="doc/#soundmanager-preferflash" title="soundManager.preferFlash documentation" onclick="checkDomain()">preferFlash</a>: false,</span></span>
   onready: function() {
     <span><span>// SM2 is ready to play audio!</span></span>
-  })
+  }
 });
 &lt;/script&gt;</code></pre>
 
@@ -412,13 +417,12 @@ soundManager.setup({
 							<h4>Creating and playing a sound object</h4>
 
 <pre class="block"><code><span><span>// create "mySound"...</span></span>
-soundManager.createSound({
-  id: '<span>mySound</span>',
+var mySound = <a href="doc/#soundmanager-createsound" title="soundManager.createSound() documentation" onclick="checkDomain()">soundManager.createSound</a>({
   url: '<span>/path/to/an.mp3</span>'
 });
 
 <span><span>// ...and play it</span></span>
-soundManager.play('<span>mySound</span>');
+mySound.play();
 </code></pre>
 
 					<p>Additional options and events can be specified when loading and playing sounds. For more examples of playback features, see <a href="demo/api/" class="cta">API Demos</a>.</p>
@@ -444,12 +448,17 @@ soundManager.play('<span>mySound</span>');
 							<ul class="bonus-demos">
 
 								<li>
+									<p class="smaller"><strong>Armor Alley (game)</strong></p>
+									<a href="http://www.schillmania.com/armor-alley/" style="display:inline-block" title="Armor Alley: Web Prototype (1990 PC-DOS version)"><img src="demo/_image/armor-alley-screenshot.png" alt="Armor Alley: Web Prototype (demo screenshot)" style="display:block;width:100%;max-width:200px" /></a>
+								</li>
+
+								<li>
 									<p class="smaller"><strong>SURVIVOR remake</strong></p>
 									<a href="http://www.schillmania.com/survivor/" style="display:inline-block" title="SURVIVOR (1982 Commodore 64 game remake)"><img src="demo/_image/survivor-screenshot.png" alt="SURVIVOR (C64 game remake) demo screenshot" style="display:block;width:100%;max-width:200px" /></a>
 								</li>
 
 								<li>
-									<p class="smaller"><strong>MPC (Drum Machine)</strong></p>
+									<p class="smaller"><strong>Drum Machine</strong></p>
 									<a href="demo/mpc/" style="display:inline-block" title="MPC (sampler/drum machine) demo"><img src="demo/_image/mpc-screenshot.png" alt="MPC (drum machine) demo screenshot" style="display:block;width:100%;max-width:200px" /></a>
 								</li>
 
@@ -495,9 +504,6 @@ soundManager.play('<span>mySound</span>');
 									</li>
 									<li>
 										<a id="pitchfork" href="http://www.pitchfork.com/" title="Pitchfork"><span>Pitchfork</span></a>
-									</li>
-									<li>
-										<a id="opera" href="http://www.opera.com/" title="Opera Software ASA (Media Player component)"><span>Opera Software ASA</span></a>
 									</li>
 									<li>
 										<a id="eight-tracks" href="http://8tracks.com/" title="8tracks"><span>8tracks</span></a>
@@ -575,7 +581,7 @@ soundManager.play('<span>mySound</span>');
 
 							<h4>HTML5 audio + optional Flash fallback</h4>
 
-							<ul id="html5-audio-notes" class="standard">
+							<ul class="standard">
 								<li>100% Flash-free audio on iPad, iPhone (iOS4) and other HTML5-enabled devices + browsers</li>
 								<li>Invisible Flash SWF provides HTML5 fallback as needed</li>
 								<li>API is consistent whether using HTML5 or Flash</li>
